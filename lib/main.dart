@@ -89,7 +89,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pop(_context);
               _taskController.clear();
             },
             child: const Text('Cancel'),
