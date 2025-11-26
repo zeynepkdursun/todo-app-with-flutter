@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(const DailyFlowApp());
+  print('deneme for github');
 }
 
 class DailyFlowApp extends StatelessWidget {
@@ -31,11 +32,16 @@ class Task {
     required this.title,
     this.isCompleted = false,
   });
+  @override
+  String toString() {
+    return title;
+  }
 }
 
 // Main Page
 class TaskListScreen extends StatefulWidget {
   const TaskListScreen({super.key});
+  
 
   @override
   State<TaskListScreen> createState() => _TaskListScreenState();
@@ -68,7 +74,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
   // UPDATE - update the text in Task line
   void _editTask(int index) {
     _taskController.text = _tasks[index].title;
-    
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -107,7 +113,9 @@ class _TaskListScreenState extends State<TaskListScreen> {
 
   // DELETE - delete the Task
   void _deleteTask(int index) {
+    final deletedTask = _tasks[index];
     setState(() {
+      print('the task "${deletedTask}" is deleted from database');
       _tasks.removeAt(index);
     });
   }
@@ -170,7 +178,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
                             value: task.isCompleted,
                             onChanged: (_) => _toggleTask(index),
                           ),
-                          
+
                           // task title
                           title: Text(
                             task.title,
@@ -178,25 +186,26 @@ class _TaskListScreenState extends State<TaskListScreen> {
                               decoration: task.isCompleted
                                   ? TextDecoration.lineThrough
                                   : null,
-                              color: task.isCompleted
-                                  ? Colors.grey
-                                  : Colors.black,
+                              color:
+                                  task.isCompleted ? Colors.grey : Colors.black,
                             ),
                           ),
-                          
+
                           // Edit and delete buttons
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               // Edit button
                               IconButton(
-                                icon: const Icon(Icons.edit, color: Colors.blue),
+                                icon:
+                                    const Icon(Icons.edit, color: Colors.blue),
                                 onPressed: () => _editTask(index),
                               ),
-                              
+
                               // Delete button
                               IconButton(
-                                icon: const Icon(Icons.delete, color: Colors.red),
+                                icon:
+                                    const Icon(Icons.delete, color: Colors.red),
                                 onPressed: () => _deleteTask(index),
                               ),
                             ],
