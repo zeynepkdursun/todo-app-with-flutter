@@ -41,7 +41,6 @@ class Task {
 // Main Page
 class TaskListScreen extends StatefulWidget {
   const TaskListScreen({super.key});
-  
 
   @override
   State<TaskListScreen> createState() => _TaskListScreenState();
@@ -60,6 +59,8 @@ class _TaskListScreenState extends State<TaskListScreen> {
         id: DateTime.now().toString(),
         title: _taskController.text,
       ));
+      print('the task "${_taskController.text}" is created');
+
       _taskController.clear();
     });
   }
@@ -68,13 +69,14 @@ class _TaskListScreenState extends State<TaskListScreen> {
   void _toggleTask(int index) {
     setState(() {
       _tasks[index].isCompleted = !_tasks[index].isCompleted;
+      print('the task "${_tasks[index].title}" is marked as ${_tasks[index].isCompleted ? 'Completed' : 'Uncompleted'}');
     });
   }
 
   // UPDATE - update the text in Task line
   void _editTask(int index) {
     _taskController.text = _tasks[index].title;
-
+    final prevTask = _taskController.text;
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -89,17 +91,20 @@ class _TaskListScreenState extends State<TaskListScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.pop(_context);
+              Navigator.pop(context);
               _taskController.clear();
             },
             child: const Text('Cancel'),
           ),
+          //for the updated text note:
           TextButton(
             onPressed: () {
-              if (_taskController.text.isEmpty) {
+              if (_taskController.text.isNotEmpty) {
                 setState(() {
                   _tasks[index].title = _taskController.text;
                 });
+                print(
+                    'the task "${prevTask}" is updated as "${_tasks[index].title}"');
               }
               Navigator.pop(context);
               _taskController.clear();
@@ -115,7 +120,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
   void _deleteTask(int index) {
     final deletedTask = _tasks[index];
     setState(() {
-      print('the task "${deletedTask}" is deleted from database');
+      print('the task "${deletedTask}" is deleted');
       _tasks.removeAt(index);
     });
   }
