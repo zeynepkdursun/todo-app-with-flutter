@@ -1,0 +1,12 @@
+{
+  "appTitle": "Todos - Daily Tasks",
+  "addNewTaskHint": "Add a new task",
+  "addButton": "Add Task",
+  "editTask": "Edit Task",
+  "cancel": "Cancel",
+  "save": "Save",
+  "noTasks": "No tasks to display.\nAdd your first task!",
+  "totalTasks": "Total",
+  "completedTasks": "Completed",
+  "@@locale": "en"
+}

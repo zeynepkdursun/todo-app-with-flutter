@@ -1,0 +1,12 @@
+{
+  "appTitle": "Yapılacaklar - Günlük Görevler",
+  "addNewTaskHint": "Yeni bir görev ekle",
+  "addButton": "Görev Ekle",
+  "editTask": "Görevi Düzenle",
+  "cancel": "İptal",
+  "save": "Kaydet",
+  "noTasks": "Gösterilecek görev yok.\nİlk görevini ekle!",
+  "totalTasks": "Toplam",
+  "completedTasks": "Tamamlanan",
+  "@@locale": "tr"
+}
